@@ -1,0 +1,63 @@
+<!-- Demonstrates the usage of single property configuration APIs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trigger Configuration</title>
+	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
+</head>
+<body style = "font-family: Helvetica, sans-serif;">
+	
+	<!-- Header and input controls -->
+	<center>
+		<h2 style="color:#002592; font-size:7vw;">Triggers Configuration</h2>
+		<p id="enabled_label"  style="font-size:5vw;">Triggers enabled here:</p>
+		<input id="enabled" style="font-size:7vw; width:80vw;" type="text">
+		<p id="disabled_label" style="font-size:5vw">Triggers disabled here:</p>
+		<input id="disabled" style="font-size:7vw; width:80vw;" type="text" onfocus="enableTrigs(false)" onblur="enableTrigs(true)">
+	</center> 
+	<br><br>
+
+	<!-- Status -->
+	<hr>
+	<p>
+		<div style="font-size:7vw"><b>Status:</b></div>
+		<div id="status" style="font-size:5vw; word-wrap: break-word;">Initialized.</div>
+	</p>
+	<hr>
+	
+	<!-- Javascript -->
+	<script src="../lib/dl_keyboard.js"></script>
+	<script>	
+		
+		// If the scanner is not available then display a warning message.
+		enableTrigs(true);
+
+		// Sets the status for the page.
+		function setStatus(message) {
+			document.getElementById('status').innerHTML = message;
+		}
+		
+		// Enables triggers
+		function enableTrigs(enable) {
+			if (DLKeyboardMgr.enableTriggers(enable)) {
+				if (enable) {
+					setStatus("Triggers enabled.");
+				}
+				else {
+					setStatus("Triggers disabled.");
+				}
+			}
+			else {
+				if (enable) {
+					setStatus("Error enabling triggers!");
+				}
+				else {
+					setStatus("Error disabling triggers!");
+				}
+			}
+		}
+
+	</script>
+</body>
+</html>

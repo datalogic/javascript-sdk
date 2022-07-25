@@ -1,0 +1,126 @@
+<!-- Demonstrates the usage of barcode scanning APIs -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Barcode Scanning</title>
+	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
+</head>
+<body style="font-family: Helvetica, sans-serif">
+	
+	<!-- Header and buttons -->
+	<center>
+		<h2 style="color:#002592; font-size:7vw;">Barcode Scanning</h2>
+		<button id="start" style="height:15vw; width:40vw; font-size:5vw;" onclick="startScan()">Start Scanning</button>
+		<button id="stop" style="height:15vw; width:40vw; font-size:5vw;" onclick="stopScan()">Stop Scanning</button>
+	</center>
+
+	<!-- Status -->
+	<hr>
+	<p>
+		<div style="font-size:7vw"><b>Status:</b></div>
+		<div id="status" style="font-size:5vw; word-wrap: break-word;">Initialized.</div>
+	</p>
+	<hr>
+	
+	<!-- Barcode symbology data -->
+	<p>
+		<div style="font-size:7vw"><b>Symbology:</b></div>
+		<div id="symbology" style="font-size:5vw;">&nbsp</div>
+	</p>
+	
+	<!-- Barcode data -->
+	<p>
+		<div style="font-size:7vw"><b>Data:</b></div>
+		<div id="data" style="font-size:5vw; word-wrap: break-word;"> &nbsp </div>
+	</p>
+	
+	<!-- Javascript -->
+	<script src="../lib/dl_barcode.js"></script>
+	<script type="text/javascript">	
+        DLBarcodeMgr.setDefaults();
+        // Disable the scanned data passing to the ui button when it has focus.
+        DLBarcodeMgr.setProperty(BcdPropIds.WEDGE_KEYBOARD_ENABLE, false);
+		const SCAN_TIMEOUT = 10000;
+
+		// Initialize the scanning, on failure disable the start button
+		enableScanButton(true);
+		if (!initScanning()) {
+			document.getElementById("start").disabled = true;
+		}
+		
+		// Sets the status string for the page
+		function setStatus(message) {
+			document.getElementById('status').innerHTML = message;
+		}
+
+		// Enable or disable start and stop buttons
+		function enableScanButton(enable) {
+			document.getElementById("start").disabled = !enable;
+			document.getElementById("stop").disabled = enable;
+		}
+
+		// Start button handler
+		function startScan() {
+			setStatus("Scanning started.");
+			document.getElementById('symbology').innerHTML = "&nbsp";
+			document.getElementById('data').innerHTML = "&nbsp";
+			enableScanButton(false);
+			DLBarcodeMgr.startDecode(SCAN_TIMEOUT);
+		}
+
+		// Stop button handler
+		function stopScan() {
+			setStatus("Scanning stopped.");
+			enableScanButton(true);
+			DLBarcodeMgr.stopDecode();
+		}
+
+		// Initializes scanning callbacks
+		function initScanning() {
+
+			// Check to see if scanning is initialized
+			if (!DLBarcodeMgr.isInitialized()) {
+				setStatus("Scanner not initialized!");
+				return false;
+			}
+
+			// Setup the scan callback
+			if (!DLBarcodeMgr.onScan(scanCallback)) {
+				setStatus("Could not set the scan callback!");
+			  	return false;
+			}
+
+			// Setup the timeout callback, on failure clear the scan callback
+			if (!DLBarcodeMgr.onTimeout(timeoutCallback)) {
+				DLBarcodeMgr.ignoreScan();
+				setStatus("Could not set the timeout callback!");
+				return false;
+			}
+
+			// Setup unload event so callbacks are removed on unload.
+			addEventListener('unload', function(event){
+				DLBarcodeMgr.ignoreScan();
+				DLBarcodeMgr.ignoreTimeout();
+			});
+
+			return true;
+		}
+
+		// Called when scanning is complete.
+		function scanCallback(params) {
+			document.getElementById("symbology").innerHTML = Object.keys(SymIds)[params.id];
+			document.getElementById("data").innerHTML = params.text;
+			setStatus("Barcode scanned.");
+			enableScanButton(true);
+		}
+
+		// Called when a scan timeout occurs.
+		function timeoutCallback() {
+			setStatus("Timeout occurred.");
+			enableScanButton(true);
+		}
+		
+	</script>
+</body>
+</html>
