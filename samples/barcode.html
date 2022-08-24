@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
 </head>
 <body style="font-family: Helvetica, sans-serif">
-	
+
 	<!-- Header and buttons -->
 	<center>
 		<h2 style="color:#002592; font-size:7vw;">Barcode Scanning</h2>
@@ -22,25 +22,25 @@
 		<div id="status" style="font-size:5vw; word-wrap: break-word;">Initialized.</div>
 	</p>
 	<hr>
-	
+
 	<!-- Barcode symbology data -->
 	<p>
 		<div style="font-size:7vw"><b>Symbology:</b></div>
 		<div id="symbology" style="font-size:5vw;">&nbsp</div>
 	</p>
-	
+
 	<!-- Barcode data -->
 	<p>
 		<div style="font-size:7vw"><b>Data:</b></div>
 		<div id="data" style="font-size:5vw; word-wrap: break-word;"> &nbsp </div>
 	</p>
-	
+
 	<!-- Javascript -->
 	<script src="../lib/dl_barcode.js"></script>
-	<script type="text/javascript">	
-        DLBarcodeMgr.setDefaults();
-        // Disable the scanned data passing to the ui button when it has focus.
-        DLBarcodeMgr.setProperty(BcdPropIds.WEDGE_KEYBOARD_ENABLE, false);
+	<script type="text/javascript">
+		DLBarcodeMgr.setDefaults();
+		// Disable the scanned data passing to the ui button when it has focus.
+		DLBarcodeMgr.setProperty(BcdPropIds.WEDGE_KEYBOARD_ENABLE, false);
 		const SCAN_TIMEOUT = 10000;
 
 		// Initialize the scanning, on failure disable the start button
@@ -48,7 +48,7 @@
 		if (!initScanning()) {
 			document.getElementById("start").disabled = true;
 		}
-		
+
 		// Sets the status string for the page
 		function setStatus(message) {
 			document.getElementById('status').innerHTML = message;
@@ -78,7 +78,6 @@
 
 		// Initializes scanning callbacks
 		function initScanning() {
-
 			// Check to see if scanning is initialized
 			if (!DLBarcodeMgr.isInitialized()) {
 				setStatus("Scanner not initialized!");
@@ -88,7 +87,7 @@
 			// Setup the scan callback
 			if (!DLBarcodeMgr.onScan(scanCallback)) {
 				setStatus("Could not set the scan callback!");
-			  	return false;
+				return false;
 			}
 
 			// Setup the timeout callback, on failure clear the scan callback
@@ -120,7 +119,6 @@
 			setStatus("Timeout occurred.");
 			enableScanButton(true);
 		}
-		
 	</script>
 </body>
 </html>

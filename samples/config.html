@@ -7,26 +7,26 @@
 	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
 </head>
 <body style = "font-family: Helvetica, sans-serif">
-	
+
 	<!-- Header -->
 	<center>
 		<h2 style="color:#002592; font-size:7vw">Scanning Configuration</h2>
 	</center>
 
 	<!-- Scanning property configuration controls -->
-	<center>	
+	<center>
 		<table>
 			<tr>
 				<td><div style="font-size:6vw; width:40vw">C39 Enable:</div></td>
-				<td><input id="enable" type="checkbox" style="height:6vw; width:6vw;" id="enable" onfocus="resetStatus()"></td>
+				<td><input id="enable" style="height:6vw; width:6vw;" type="checkbox" onfocus="resetStatus()"></td>
 			</tr>
 			<tr>
-				<td><div style="font-size:6vw; width:40vw" min="1" max="99">C39 L1:</div></td>
-				<td><input id="l1" style="font-size:6vw; width:40vw" type="number" onfocus="resetStatus()"></td>
+				<td><div style="font-size:6vw; width:40vw">C39 L1:</div></td>
+				<td><input id="l1" style="font-size:6vw; width:40vw" type="number" min="1" max="99" onfocus="resetStatus()"></td>
 			</tr>
 			<tr>
-				<td><div style="font-size:6vw; width:40vw" min="1" max="99">C39 L2:</div></td>
-				<td><input id="l2" style="font-size:6vw; width:40vw" type="number" onfocus="resetStatus()"></td>
+				<td><div style="font-size:6vw; width:40vw">C39 L2:</div></td>
+				<td><input id="l2" style="font-size:6vw; width:40vw" type="number" min="1" max="99" onfocus="resetStatus()"></td>
 			</tr>
 			<tr>
 				<td><div style="font-size:6vw; width:40vw">C39 User ID:</div></td>
@@ -60,11 +60,11 @@
 		<button id="commit" style="height:10vw; width:30vw; font-size:7vw" onclick="commitButton()">Commit</button>
 		<button id="default" style="height:10vw; width:30vw; font-size:7vw" onclick="defaultButton()">Default</button>
 	</center>
-	
+
 	<!-- Javascript -->
 	<script src="../lib/dl_barcode.js"></script>
-	<script>	
-		
+	<script>
+
 		// If the scanner is not available then display a warning message.
 		if (!DLBarcodeMgr.isInitialized()) {
 			setStatus("Scanner not initialized!");
@@ -91,7 +91,7 @@
 		function clearData() {
 			document.getElementById('data').value = "";
 		}
-		
+
 		// Refreshes the displayed settings to the current values.
 		function refreshSettings() {
 			document.getElementById("enable").checked = DLBarcodeMgr.getProperty(BcdPropIds.CODE39_ENABLE);
@@ -111,14 +111,13 @@
 
 		// Set button handler
 		function setButton() {
-		
 			// Create the arrays we will use to set the properties
 			let i = 0;
 			let propVal;
 			let propStr;
 			let ids = [];
 			let values = [];
-			
+
 			// Add the enable property
 			ids[i] = BcdPropIds.CODE39_ENABLE;
 			values[i++] = Number(document.getElementById("enable").checked);
@@ -129,7 +128,7 @@
 				ids[i] = BcdPropIds.CODE39_LENGTH1;
 				values[i++] = propVal;
 			}
-			
+
 			// If valid, add the l2 property
 			propVal = parseInt(document.getElementById("l2").value, 10);
 			if (!isNaN(propVal)) {
@@ -147,18 +146,18 @@
 
 			// Add the prefix property
 			ids[i] = BcdPropIds.LABEL_PREFIX;
-			values[i++] = document.getElementById("prefix").value; 
-					
+			values[i++] = document.getElementById("prefix").value;
+
 			// Call set properties to update the settings
 			DLBarcodeMgr.setProperties(ids, values);
-			
+
 			// Refresh settings to match what the current settings.
 			refreshSettings();
 
 			// Output status message
 			setStatus("Properties set.");
 		}
-		
+
 		// Commit button handler
 		function commitButton() {
 			if (DLBarcodeMgr.commitProperties()) {
@@ -171,7 +170,7 @@
 			// Refresh settings to match what the current settings.
 			refreshSettings();
 		}
-		
+
 		// Default button handler
 		function defaultButton() {
 			if (DLBarcodeMgr.setDefaults()) {
@@ -187,7 +186,6 @@
 			// Refresh settings to match what the current settings.
 			refreshSettings();
 		}
-
 	</script>
 </body>
 </html>
