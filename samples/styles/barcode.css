@@ -1,0 +1,31 @@
+.action-button {
+    height:15vw;
+    width:40vw;
+    font-size:5vw;
+}
+
+h3 {
+    font-size:7vw;
+    font-weight: bold;
+}
+
+div {
+    font-size:5vw;
+    word-wrap: break-word;
+}
+
+@media screen and (min-width: 601px) {
+    .action-button {
+        height:5vw;
+        width:20vw;
+        font-size:1.5vw;
+    }
+    
+    h3 {
+        font-size:2vw;
+    }
+    
+    div {
+        font-size:1.5vw;
+    }
+}

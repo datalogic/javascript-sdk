@@ -2,93 +2,33 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Location</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="res/favicon.ico">
-    <!-- Used to get globe icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-    #latitude, #longitude {
-        font-size: 76px;
-        font-weight: bold;
-    }
-    #map-link{
-        display: inline-block;
-        width: 100%;
-        text-align:center;
-    }
-    #globe{
-        visibility: hidden;
-        font-size:120px;
-    }
-    #status {
-        font-size: 40px;
-    }
-    button{
-        width: 400px;
-        height: 100px;
-        background-color: blue;
-        color: white;
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-size: 36px;
-        font-weight: bold;
-        border-radius: 30px;
-        border: none;
-        padding: 15px 20px;
-        text-align: center;
-        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-        position: fixed;
-        bottom: 50px;
-        left: calc(50% - 200px);
-    }
-	</style>
-
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/location.css">
+    <script src="scripts/location.js"></script>
 </head>
-<body style="font-family: Helvetica, sans-serif">
 
-    <button id = "find-me">Show my location</button><br/>
-    <p id="latitude">Latitude: </p>
-    <p id="longitude">Longitude: </p>
-    <a id ="map-link" target="_blank"><i id="globe" href="" class="fa fa-globe"></i></a>
-    <p id ="status"></p>
+<body>
+<!-- Header and page title -->
+<center>
+    <div class="banner">Visit datalogic.github.io/javascript/overview/ for full SDK documentation</div>
+    <h2>Location</h2>
+</center>
 
-<script type="text/javascript">
-    function geoFindMe() {
+<!-- Location data -->
+<h3 id="latitude">Latitude: </h3>
+<h3 id="longitude">Longitude: </h3>
+<a id="map-link" target="_blank"><i id="globe" href="" class="fa fa-globe"></i></a>
+<div id="status"></div>
 
-        const status = document.querySelector('#status'),
-            mapLink = document.querySelector('#map-link'),
-            latitude = document.querySelector('#latitude'),
-            longitude = document.querySelector('#longitude'),
-            globe = document.querySelector('#globe');
-
-        function success(position) {
-            const lat = position.coords.latitude;
-            const long = position.coords.longitude;
-
-            longitude.textContent = `Longitude: ${long}°`
-            latitude.textContent = `Latitude: ${lat}°`
-
-            status.textContent = '';
-            mapLink.href = `https://www.openstreetmap.org/#map=18/${lat}/${long}`
-            globe.style.visibility = "visible";
-        }
-
-        function error() {
-            status.textContent = 'Unable to retrieve your location';
-        }
-
-        if (!navigator.geolocation) {
-            status.textContent = 'Geolocation is not supported by your browser';
-        } else {
-            status.textContent = 'Locating…';
-            navigator.geolocation.getCurrentPosition(success, error);
-        }
-
-    }
-
-    document.querySelector('#find-me').addEventListener('click', geoFindMe);
-
-</script>
+<!-- Action button -->
+<button id="find-me" class="blue-footer-button">Show my location</button><br/>
 
 </body>
+
 </html>

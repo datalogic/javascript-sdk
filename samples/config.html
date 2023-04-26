@@ -2,190 +2,96 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Scanning Configuration</title>
-	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
+    <title>Scanning Configuration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="res/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/config.css">
+    <script src="scripts/config.js"></script>
+    <script src="../lib/dl_barcode.js"></script>
 </head>
-<body style = "font-family: Helvetica, sans-serif">
 
-	<!-- Header -->
-	<center>
-		<h2 style="color:#002592; font-size:7vw">Scanning Configuration</h2>
-	</center>
+<body>
 
-	<!-- Scanning property configuration controls -->
-	<center>
-		<table>
-			<tr>
-				<td><div style="font-size:6vw; width:40vw">C39 Enable:</div></td>
-				<td><input id="enable" style="height:6vw; width:6vw;" type="checkbox" onfocus="resetStatus()"></td>
-			</tr>
-			<tr>
-				<td><div style="font-size:6vw; width:40vw">C39 L1:</div></td>
-				<td><input id="l1" style="font-size:6vw; width:40vw" type="number" min="1" max="99" onfocus="resetStatus()"></td>
-			</tr>
-			<tr>
-				<td><div style="font-size:6vw; width:40vw">C39 L2:</div></td>
-				<td><input id="l2" style="font-size:6vw; width:40vw" type="number" min="1" max="99" onfocus="resetStatus()"></td>
-			</tr>
-			<tr>
-				<td><div style="font-size:6vw; width:40vw">C39 User ID:</div></td>
-				<td><input id="id" style="font-size:6vw; width:40vw" type="text" onfocus="resetStatus()"></td>
-			</tr>
-			<tr>
-				<td><div style="font-size:6vw; width:40vw">Prefix:</div></td>
-				<td><input id="prefix" style="font-size:6vw; width:40vw" type="text" onfocus="resetStatus()"></td>
-			</tr>
-		</table>
-	</center>
+<!-- Move HTML Buttons -->
 
-	<!-- Area to receive barcode data -->
-	<center>
-		<hr>
-		<input id="data" style="font-size:4vw; width:90vw" type="text" value="Try out settings here." onfocus="clearData()">
-	</center>
+<!-- Header and page title-->
+<center>
+    <div class="banner">Visit datalogic.github.io/javascript/overview/ for full SDK documentation</div>
+    <h2>Scanning Configuration</h2>
+</center>
 
-	<!-- Status -->
-	<hr>
-	<p>
-		<div style="font-size:7vw"><b>Status:</b></div>
-		<div id="status" style="font-size:5vw; word-wrap: break-word;">Initialized.</div>
-	</p>
-	<hr>
-	<br>
+<!-- Scanning property configuration controls -->
+<center>
+    <table>
+        <tr>
+            <td>
+                <div class="config-label">C39 Enable:</div>
+            </td>
+            <td><input id="enable" class="config-input" style="width: 6vw;" type="checkbox"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="config-label">C39 L1:</div>
+            </td>
+            <td><input id="l1" class="config-input" type="number" min="1" max="99"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="config-label">C39 L2:</div>
+            </td>
+            <td><input id="l2" class="config-input" type="number" min="1" max="99"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="config-label">C39 User ID:</div>
+            </td>
+            <td><input id="id" class="config-input" type="text"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="config-label">Prefix:</div>
+            </td>
+            <td><input id="prefix" class="config-input" type="text"></td>
+        </tr>
+    </table>
+</center>
 
-	<!-- Buttons -->
-	<center>
-		<button id="get" style="height:10vw; width:30vw; font-size:7vw" onclick="setButton()">Set</button>
-		<button id="commit" style="height:10vw; width:30vw; font-size:7vw" onclick="commitButton()">Commit</button>
-		<button id="default" style="height:10vw; width:30vw; font-size:7vw" onclick="defaultButton()">Default</button>
-	</center>
+<!-- Area to receive barcode data -->
+<center>
+    <hr>
+    <input id="data" type="text" value="Try out settings here.">
+</center>
 
-	<!-- Javascript -->
-	<script src="../lib/dl_barcode.js"></script>
-	<script>
+<!-- Status -->
+<hr>
+<div>
+    <h3>Status:</h3>
+    <div id="status">Initialized.</div>
+</div>
+<hr>
+<br>
 
-		// If the scanner is not available then display a warning message.
-		if (!DLBarcodeMgr.isInitialized()) {
-			setStatus("Scanner not initialized!");
-			document.getElementById("get").disabled = true;
-			document.getElementById("commit").disabled = true;
-			document.getElementById("default").disabled = true;
-		}
-		else {
-			refreshSettings();
-			enableUserID();
-		}
-
-		// Sets the status for the page.
-		function setStatus(message) {
-			document.getElementById('status').innerHTML = message;
-		}
-
-		// Sets the status for the page.
-		function resetStatus() {
-			setStatus("&nbsp");
-		}
-
-		// Clears any scanned barcode data
-		function clearData() {
-			document.getElementById('data').value = "";
-		}
-
-		// Refreshes the displayed settings to the current values.
-		function refreshSettings() {
-			document.getElementById("enable").checked = DLBarcodeMgr.getProperty(BcdPropIds.CODE39_ENABLE);
-			document.getElementById("l1").value = DLBarcodeMgr.getProperty(BcdPropIds.CODE39_LENGTH1);
-			document.getElementById("l2").value = DLBarcodeMgr.getProperty(BcdPropIds.CODE39_LENGTH2);
-			document.getElementById("id").value = String.fromCharCode(DLBarcodeMgr.getProperty(BcdPropIds.CODE39_USER_ID));
-			document.getElementById("prefix").value = DLBarcodeMgr.getProperty(BcdPropIds.LABEL_PREFIX);
-		}
-
-		// Enable the user ID.
-		function enableUserID() {
-			// Set scanner so the user ID is output.
-			if (!DLBarcodeMgr.setProperty(BcdPropIds.SEND_CODE_ID, SendCodeID.USERDEFINED_IDENTIFIER_BEFORE_LABEL)) {
-				setStatus("Could not enable user code ID!");
-			}
-		}
-
-		// Set button handler
-		function setButton() {
-			// Create the arrays we will use to set the properties
-			let i = 0;
-			let propVal;
-			let propStr;
-			let ids = [];
-			let values = [];
-
-			// Add the enable property
-			ids[i] = BcdPropIds.CODE39_ENABLE;
-			values[i++] = Number(document.getElementById("enable").checked);
-
-			// If valid, add the l1 property
-			propVal = parseInt(document.getElementById("l1").value, 10);
-			if (!isNaN(propVal)) {
-				ids[i] = BcdPropIds.CODE39_LENGTH1;
-				values[i++] = propVal;
-			}
-
-			// If valid, add the l2 property
-			propVal = parseInt(document.getElementById("l2").value, 10);
-			if (!isNaN(propVal)) {
-				ids[i] = BcdPropIds.CODE39_LENGTH2;
-				values[i++] = propVal;
-			}
-
-			// If valid, add the user ID
-			propStr = document.getElementById("id").value;
-			propVal = propStr.charCodeAt(0);
-			if (!isNaN(propVal)) {
-				ids[i] = BcdPropIds.CODE39_USER_ID;
-				values[i++] = propVal;
-			}
-
-			// Add the prefix property
-			ids[i] = BcdPropIds.LABEL_PREFIX;
-			values[i++] = document.getElementById("prefix").value;
-
-			// Call set properties to update the settings
-			DLBarcodeMgr.setProperties(ids, values);
-
-			// Refresh settings to match what the current settings.
-			refreshSettings();
-
-			// Output status message
-			setStatus("Properties set.");
-		}
-
-		// Commit button handler
-		function commitButton() {
-			if (DLBarcodeMgr.commitProperties()) {
-				setStatus("Properties committed.");
-			}
-			else {
-				setStatus("Error committing properties!");
-			}
-
-			// Refresh settings to match what the current settings.
-			refreshSettings();
-		}
-
-		// Default button handler
-		function defaultButton() {
-			if (DLBarcodeMgr.setDefaults()) {
-				setStatus("Properties set to default.");
-			}
-			else {
-				setStatus("Error setting defaults!");
-			}
-
-			// Enable the user ID
-			enableUserID();
-
-			// Refresh settings to match what the current settings.
-			refreshSettings();
-		}
-	</script>
+<!-- Buttons -->
+<center>
+    <table>
+        <tr>
+            <td>
+                <button id="get" class="config-button">Set</button>
+            </td>
+            <td>
+                <button id="commit" class="config-button">Commit</button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=3>
+                <button id="default" class="large-config-button">Reset Scanner Defaults</button>
+            </td>
+        </tr>
+    </table>
+</center>
 </body>
+
 </html>

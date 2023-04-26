@@ -2,169 +2,34 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Audio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="res/favicon.ico">
-    <style>
-    .display{
-        width: 100%;
-        height: 100%;
-        font-size: 48px;
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    Button{
-        width: 400px;
-        height: 100px;
-        background-color: blue;
-        color: white;
-        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        font-size: 42px;
-        font-weight: bold;
-        border-radius: 30px;
-        border: none;
-        padding: 15px 20px;
-        text-align: center;
-        box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
-        position: fixed;
-        bottom: 50px;
-        left: calc(50% - 200px);
-    }
-	</style>
-
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/microphone.css">
+    <script src="scripts/microphone.js"></script>
 </head>
-<body style="font-family: Helvetica, sans-serif">
-    
-    <div class="container">
-        <div class="display">
-            <!-- Add Messages and audio tag here -->
-        </div>
 
-        <div class="controllers">
-            <!-- Start, stop, download -->
-        </div>
+<body>
+<!-- Header and page title -->
+<center>
+    <div class="banner">Visit datalogic.github.io/javascript/overview/ for full SDK documentation</div>
+    <h2>Microphone</h2>
+</center>
+
+<!-- Primary content -->
+<div class="container">
+    <div class="display">
+        <!-- Add Messages and audio tag here -->
     </div>
 
-<script type="text/javascript">
-    // collect DOMs
-    const display = document.querySelector('.display')
-    const controllerWrapper = document.querySelector('.controllers')
-
-    const State = ['Initial', 'Record', 'Finished']
-    let stateIndex = 0
-    let mediaRecorder, chunks = [], audioURL = ''
-
-    // mediaRecorder setup for audio
-    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
-        console.log('mediaDevices supported..')
-
-        navigator.mediaDevices.getUserMedia({
-            audio: true
-        }).then(stream => {
-            mediaRecorder = new MediaRecorder(stream)
-
-            mediaRecorder.ondataavailable = (e) => {
-                chunks.push(e.data)
-            }
-
-            mediaRecorder.onstop = () => {
-                const blob = new Blob(chunks, {'type': 'audio/ogg; codecs=opus'})
-                chunks = []
-                audioURL = window.URL.createObjectURL(blob)
-                let audio = document.querySelector('audio')
-                audio.src = audioURL;
-                audio.style.height = "150px"
-            }
-        }).catch(error => {
-            console.log('Following error has occured : ',error)
-        })
-    }else{
-        stateIndex = ''
-        application(stateIndex)
-    }
-
-    const clearDisplay = () => {
-        display.textContent = ''
-    }
-
-    const clearControls = () => {
-        controllerWrapper.textContent = ''
-    }
-
-    const record = () => {
-        stateIndex = 1
-        mediaRecorder.start()
-        application(stateIndex)
-    }
-
-    const stopRecording = () => {
-        stateIndex = 2
-        mediaRecorder.stop()
-        application(stateIndex)
-    }
-
-    const addButton = (id, funString, text) => {
-        const btn = document.createElement('button')
-        btn.id = id
-        btn.setAttribute('onclick', funString)
-        btn.textContent = text
-        controllerWrapper.append(btn)
-    }
-
-    const addMessage = (text) => {
-        const msg = document.createElement('p')
-        msg.textContent = text
-        display.append(msg)
-    }
-
-    const addAudio = () => {
-        const audio = document.createElement('audio')
-        audio.controls = true
-        audio.src = audioURL
-        display.append(audio)
-    }
-
-    const application = (index) => {
-        switch (State[index]) {
-            case 'Initial':
-                clearDisplay()
-                clearControls()
-        
-                addMessage('Press the start button to start recording')
-                addButton('record', 'record()', 'Start Recording')
-                break;
-
-            case 'Record':
-                clearDisplay()
-                clearControls()
-
-                addMessage('Recording...')
-                addButton('stop', 'stopRecording()', 'Stop Recording')
-                break
-
-            case 'Finished':
-                clearControls()
-                clearDisplay()
-        
-                addAudio()
-                addButton('record', 'record()', 'Record Again')
-                break
-            
-            default:
-                clearControls()
-                clearDisplay()
-
-                addMessage('Your browser does not support mediaDevices')
-                break;
-        }
-
-    }
-
-    application(stateIndex)
-
-</script>
+    <div class="controllers">
+        <!-- Start, stop, download -->
+    </div>
+</div>
 
 </body>
+
 </html>

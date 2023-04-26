@@ -2,48 +2,66 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Javascript SDK Sample Apps</title>
-	<link rel="icon" type="image/x-icon" href="samples/res/favicon.ico">
+    <title>Byron's Javascript SDK Sample Apps</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="samples/res/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="samples/styles/index.css">
+    <link rel="stylesheet" type="text/css" href="samples/styles/styles.css">
 </head>
 
-<body style = "font-family: Helvetica, sans-serif; font-size:6vw; color:#002592;">
-	<!-- Header -->
-	<p><img src="samples/res/logo.jpg" alt="Datalogic" style="width:80vw"></p>
-	<h2 style = "font-size:7vw">Javascript SDK Samples</h2>
-	<p style = "color:black; font-size:4vw">
-		The following web apps demonstrate different aspects of the Datalogic Javascript SDK exposed by Datalogic Enterprise Browser.
-	</p>
-	<br>
+<body>
+<header>
+    <img class="logo" src="samples/res/logo.jpg" alt="Datalogic">
+    <center>
+        <h2>Javascript SDK Samples</h2>
+        <p class="description">
+            The following web apps demonstrate different aspects of the Datalogic Javascript SDK exposed by
+            Datalogic Enterprise Browser
+        </p>
+    </center>
+</header>
 
-	<!-- Barcode scanning sample -->
-	<p>
-		<a href="samples/barcode.html"><b>Barcode Scanning</b></a>
-	</p>
+<div class="test-pages">
+    <!-- Barcode scanning sample -->
+    <div id="barcode-scanning" class="card">
+        <img class="card-icon" src="samples/res/barcode-scanner.svg" alt="Avatar">
+        <a class="test-page-link" href="samples/barcode.html">Barcode Scanning</a>
+    </div>
 
-	<!-- Scanning configuration sample -->
-	<p>
-		<a href="samples/config.html"><b>Scanning Configuration</b></a>
-	</p>
+    <!-- Scanning configuration sample -->
+    <div id="scanning-configuration" class="card">
+        <img class="card-icon" src="samples/res/settings.svg" alt="Avatar">
+        <a class="test-page-link" href="samples/config.html">Scanning Configuration</a>
+    </div>
 
-	<!-- Trigger configuration sample -->
-	<p>
-		<a href="samples/trigger.html"><b>Trigger Configuration</b></a>
-	</p>
+    <!-- Trigger configuration sample -->
+    <div id="trigger-configuration" class="card">
+        <img class="card-icon" src="samples/res/settings.svg" alt="Avatar">
+        <a class="test-page-link" href="samples/trigger.html">Trigger Configuration</a>
+    </div>
 
-	<!-- Use the Camera-->
-	<p>
-		<a href="samples/camera.html"><b>Camera</b></a>
-	</p>
+    <!-- Use the Camera-->
+    <div id="camera" class="card">
+        <img class="card-icon" src="samples/res/camera.svg" alt="Avatar">
+        <a class="test-page-link" href="samples/camera.html">Camera</a>
+    </div>
 
-	<!-- Trigger Location -->
-	<p>
-		<a href="samples/location.html"><b>Location</b></a>
-	</p>
+    <!-- Trigger Location -->
+    <div id="location" class="card">
+        <img class="card-icon" src="samples/res/location.svg" alt="Avatar">
+        <a class="test-page-link" href="samples/location.html">Location</a>
+    </div>
 
-	<!-- Use the Microphone -->
-	<p>
-		<a href="samples/microphone.html"><b>Microphone</b></a>
-	</p>
+    <!-- Use the Microphone -->
+    <div id="microphone" class="card">
+        <img class="card-icon" src="samples/res/microphone.svg" alt="Avatar">
+        <a class="test-page-link" href="samples/microphone.html">Microphone</a>
+    </div>
+
+</div>
 </body>
+
 </html>
