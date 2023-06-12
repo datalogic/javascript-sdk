@@ -4,94 +4,92 @@
 <html>
 
 <head>
-    <title>Scanning Configuration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="res/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/config.css">
-    <script src="scripts/config.js"></script>
-    <script src="../lib/dl_barcode.js"></script>
+	<title>Scanning Configuration</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/config.css">
+	<script src="scripts/config.js"></script>
+	<script src="../lib/dl_barcode.js"></script>
+	<script src="../lib/dl_keyboard.js"></script>
 </head>
 
 <body>
+	<!-- Header and page title-->
+	<center>
+		<div class="banner">Visit datalogic.github.io/javascript/overview/ for full SDK documentation</div>
+		<h2>Scanning Configuration</h2>
+	</center>
 
-<!-- Move HTML Buttons -->
+	<!-- Scanning property configuration controls -->
+	<center>
+		<table>
+			<tr>
+				<td>
+					<div class="config-label">C39 Enable:</div>
+				</td>
+				<td><input id="enable" class="config-input" style="width: 6vw;" type="checkbox"></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="config-label">C39 L1:</div>
+				</td>
+				<td><input id="l1" class="config-input" type="number" min="1" max="99"></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="config-label">C39 L2:</div>
+				</td>
+				<td><input id="l2" class="config-input" type="number" min="1" max="99"></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="config-label">C39 User ID:</div>
+				</td>
+				<td><input id="id" class="config-input" type="text"></td>
+			</tr>
+			<tr>
+				<td>
+					<div class="config-label">Prefix:</div>
+				</td>
+				<td><input id="prefix" class="config-input" type="text"></td>
+			</tr>
+		</table>
+	</center>
 
-<!-- Header and page title-->
-<center>
-    <div class="banner">Visit datalogic.github.io/javascript/overview/ for full SDK documentation</div>
-    <h2>Scanning Configuration</h2>
-</center>
+	<!-- Area to receive barcode data -->
+	<center>
+		<hr>
+		<input id="data" type="text" value="Try out settings here.">
+	</center>
 
-<!-- Scanning property configuration controls -->
-<center>
-    <table>
-        <tr>
-            <td>
-                <div class="config-label">C39 Enable:</div>
-            </td>
-            <td><input id="enable" class="config-input" style="width: 6vw;" type="checkbox"></td>
-        </tr>
-        <tr>
-            <td>
-                <div class="config-label">C39 L1:</div>
-            </td>
-            <td><input id="l1" class="config-input" type="number" min="1" max="99"></td>
-        </tr>
-        <tr>
-            <td>
-                <div class="config-label">C39 L2:</div>
-            </td>
-            <td><input id="l2" class="config-input" type="number" min="1" max="99"></td>
-        </tr>
-        <tr>
-            <td>
-                <div class="config-label">C39 User ID:</div>
-            </td>
-            <td><input id="id" class="config-input" type="text"></td>
-        </tr>
-        <tr>
-            <td>
-                <div class="config-label">Prefix:</div>
-            </td>
-            <td><input id="prefix" class="config-input" type="text"></td>
-        </tr>
-    </table>
-</center>
+	<!-- Status -->
+	<hr>
+	<div>
+		<h3>Status:</h3>
+		<div id="status">Scanner not initialized!</div>
+	</div>
+	<hr>
+	<br>
 
-<!-- Area to receive barcode data -->
-<center>
-    <hr>
-    <input id="data" type="text" value="Try out settings here.">
-</center>
-
-<!-- Status -->
-<hr>
-<div>
-    <h3>Status:</h3>
-    <div id="status">Initialized.</div>
-</div>
-<hr>
-<br>
-
-<!-- Buttons -->
-<center>
-    <table>
-        <tr>
-            <td>
-                <button id="get" class="config-button">Set</button>
-            </td>
-            <td>
-                <button id="commit" class="config-button">Commit</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan=3>
-                <button id="default" class="large-config-button">Reset Scanner Defaults</button>
-            </td>
-        </tr>
-    </table>
-</center>
+	<!-- Buttons -->
+	<center>
+		<table>
+			<tr>
+				<td>
+					<button id="get" class="config-button">Set</button>
+				</td>
+				<td>
+					<button id="commit" class="config-button">Commit</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=3>
+					<button id="default" class="large-config-button">Reset Scanner Defaults</button>
+				</td>
+			</tr>
+		</table>
+	</center>
 </body>
 
 </html>

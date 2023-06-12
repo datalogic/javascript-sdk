@@ -1,25 +1,25 @@
 #map-link {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
+	display: inline-block;
+	width: 100%;
+	text-align: center;
 }
 
 #globe {
-    visibility: hidden;
-    font-size: 120px;
+	visibility: hidden;
+	font-size: 120px;
 }
 
 #status {
-    font-size: 40px;
+	font-size: 40px;
 }
 
 h3 {
-    font-size:7vw;
-    font-weight: bold;
+	font-size:7vw;
+	font-weight: bold;
 }
 
 @media screen and (min-width: 601px) {  
-    h3 {
-        font-size:2vw;
-    }
+	h3 {
+		font-size:2vw;
+	}
 }

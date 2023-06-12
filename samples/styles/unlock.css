@@ -14,6 +14,11 @@ div {
 	word-wrap: break-word;
 }
 
+#enableLed {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 @media screen and (min-width: 601px) {
 	.action-button {
 		height:5vw;
@@ -27,5 +32,9 @@ div {
 	
 	div {
 		font-size:1.5vw;
+	}
+
+	#enableLed {
+		padding-top: 10px;
 	}
 }

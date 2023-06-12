@@ -14,6 +14,13 @@ div {
 	word-wrap: break-word;
 }
 
+#data {
+	font-size:4vw;
+	width: 90vw;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
 @media screen and (min-width: 601px) {
 	.action-button {
 		height:5vw;
@@ -27,5 +34,12 @@ div {
 	
 	div {
 		font-size:1.5vw;
+	}
+
+	#data {
+		font-size:1.5vw;
+		width: 90vw;
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 }

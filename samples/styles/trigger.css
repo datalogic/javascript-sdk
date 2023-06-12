@@ -1,27 +1,28 @@
 .trigger-input-box {
-    font-size: 7vw;
-    width: 80vw;
-    margin-top: 3px;
+	font-size: 7vw;
+	width: 80vw;
+	margin-top: 5px;
 }
 
 div {
-    font-size:5vw;
-    word-wrap: break-word;
+	font-size:5vw;
+	word-wrap: break-word;
+	margin-bottom: 5px;
 }
 
 h3 {
-    font-size:7vw;
-    font-weight: bold;
+	font-size:7vw;
+	font-weight: bold;
 }
 
 @media screen and (min-width: 601px) {
-    .trigger-input-box {
-        font-size: 2vw;
-    }
-    div {
-        font-size:1.5vw;
-    }
-    h3 {
-        font-size:2vw;
-    }
+	.trigger-input-box {
+		font-size: 2vw;
+	}
+	div {
+		font-size:1.5vw;
+	}
+	h3 {
+		font-size:2vw;
+	}
 }

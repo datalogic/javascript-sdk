@@ -9,16 +9,16 @@ window.addEventListener('DOMContentLoaded', () => {
 		document.getElementById("disabled").onblur = enableTrigsHelper;
 	} catch (e) {
 		if (e instanceof ReferenceError && e.message.includes("_DLKeyboardMgr")) {
-            console.error(e)
-            console.log("ERROR: DLKeyboardMgr not injected. Barcode scanning functions may not work as expected.");
-            alert("Error: DLKeyboardMgr not detected. SDK calls may not work as expected. For full functionality, use a Datalogic mobile scanner and the latest version of Enterprise Browser.");
-        }
+			console.error(e)
+			console.log("ERROR: DLKeyboardMgr not injected. Barcode scanning functions may not work as expected.");
+			alert("Error: DLKeyboardMgr not detected. SDK calls may not work as expected. For full functionality, use a Datalogic mobile scanner and the latest version of Enterprise Browser.");
+		}
 
-        if (e instanceof ReferenceError && e.message.includes("_DLBarcodeMgr")) {
-            console.error(e)
-            console.log("ERROR: DLBarcodeMgr not injected. Barcode scanning functions may not work as expected.");
-            alert("Error: DLBarcodeMgr not detected. SDK calls may not work as expected. For full functionality, use a Datalogic mobile scanner and the latest version of Enterprise Browser.");
-        }
+		if (e instanceof ReferenceError && e.message.includes("_DLBarcodeMgr")) {
+			console.error(e)
+			console.log("ERROR: DLBarcodeMgr not injected. Barcode scanning functions may not work as expected.");
+			alert("Error: DLBarcodeMgr not detected. SDK calls may not work as expected. For full functionality, use a Datalogic mobile scanner and the latest version of Enterprise Browser.");
+		}
 	}
 
 	// Event assignable helper to enable triggers

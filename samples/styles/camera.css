@@ -1,51 +1,51 @@
 html,
 body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
 }
 
 #camera,
 #camera--view,
 #camera--sensor,
 #camera--output {
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
 }
 
 #camera--view,
 #camera--sensor,
 #camera--output {
-    transform: scaleX(-1);
-    filter: FlipH;
+	transform: scaleX(-1);
+	filter: FlipH;
 }
 
 .taken {
-    height: 400px !important;
-    width: 400px !important;
-    transition: all 0.5s ease-in;
-    border: solid 3px white;
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
-    top: 20px;
-    right: 20px;
-    z-index: 2;
+	height: 400px !important;
+	width: 400px !important;
+	transition: all 0.5s ease-in;
+	border: solid 3px white;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+	top: 20px;
+	right: 20px;
+	z-index: 2;
 }
 
 .blue-footer-button {
-    width: 80%;
-    left: calc(30%);
-    font-size: 1.5em;
+	width: 80%;
+	left: calc(30%);
+	font-size: 1.5em;
 }
 
 @media screen and (min-width: 601px) {
-    .blue-footer-button {
-        width: 50vw;
-        left: calc(50% - 25vw);
-        font-size: 3em;
-        bottom: 50px;
-        height: 90px;
-    }
+	.blue-footer-button {
+		width: 50vw;
+		left: calc(50% - 25vw);
+		font-size: 3em;
+		bottom: 50px;
+		height: 90px;
+	}
 }

@@ -1,0 +1,62 @@
+<!-- Demonstrates the usage of cradle APIs -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Cradle LEDs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/led.css">
+	<script type="text/javascript" charset="utf-8" src="scripts/led.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../lib/dl_cradle.js"></script>
+</head>
+
+<body>
+	<!-- Header and page title -->
+	<center>
+		<div class="banner">Visit datalogic.github.io/javascript/overview/ for full SDK documentation</div>
+		<h2>Cradle LEDs</h2>
+	</center>
+
+	<!-- Action buttons -->
+	<center>
+	</center>
+
+
+
+	<!-- Buttons -->
+	<center>
+		<table>
+			<tr>
+				<td>
+					<button class="action-button" id="on">LED On</button>
+				</td>
+				<td>
+					<button class="action-button" id="off">LED Off</button>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button class="action-button" id="blink-fast">Blink Fast</button>
+				</td>
+				<td>
+					<button class="action-button" id="blink-slow">Blink Slow</button>
+				</td>
+			</tr>
+		</table>
+		<button class="action-button" id="toggle">Toggle</button>
+
+	</center>
+
+	<!-- Status -->
+	<hr>
+	<div>
+		<h3>Status:</h3>
+		<div id="status">Initialized.</div>
+	</div>
+	<hr>
+</body>
+
+</html>
