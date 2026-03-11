@@ -7,6 +7,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		document.getElementById("disabled").onfocus = disableTrigsHelper;
 		document.getElementById("disabled").onblur = enableTrigsHelper;
+
+		document.getElementById("softkb_show").onclick = function () {
+			setSoftKeyboard(true);
+		};
+		document.getElementById("softkb_hide").onclick = function () {
+			setSoftKeyboard(false);
+		};
 	} catch (e) {
 		if (e instanceof ReferenceError && e.message.includes("_DLKeyboardMgr")) {
 			console.error(e)
@@ -53,6 +60,19 @@ window.addEventListener('DOMContentLoaded', () => {
 			else {
 				setStatus("Error disabling triggers!");
 			}
+		}
+	}
+
+	function setSoftKeyboardStatus(message) {
+		document.getElementById("softkb_status").innerHTML = message;
+	}
+
+	function setSoftKeyboard(show) {
+		if (DLKeyboardMgr.showSoftKeyboard(show)) {
+			setSoftKeyboardStatus(show ? "Requested keyboard show." : "Requested keyboard hide.");
+		}
+		else {
+			setSoftKeyboardStatus("Keyboard request failed.");
 		}
 	}
 
