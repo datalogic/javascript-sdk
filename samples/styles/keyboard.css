@@ -1,7 +1,13 @@
-.trigger-input-box {
+.keyboard-input-box {
 	font-size: 7vw;
 	width: 80vw;
 	margin-top: 5px;
+}
+
+.keyboard-test-button {
+	font-size: 5vw;
+	padding: 10px 20px;
+	margin: 5px;
 }
 
 div {
@@ -16,8 +22,11 @@ h3 {
 }
 
 @media screen and (min-width: 601px) {
-	.trigger-input-box {
+	.keyboard-input-box {
 		font-size: 2vw;
+	}
+	.keyboard-test-button {
+		font-size: 1.5vw;
 	}
 	div {
 		font-size:1.5vw;
