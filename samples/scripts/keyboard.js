@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 		document.getElementById("disabled").onfocus = disableTrigsHelper;
 		document.getElementById("disabled").onblur = enableTrigsHelper;
-
 		document.getElementById("softkb_show").onclick = function () {
 			setSoftKeyboard(true);
 		};
@@ -20,7 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
 			console.log("ERROR: DLKeyboardMgr not injected. Barcode scanning functions may not work as expected.");
 			alert("Error: DLKeyboardMgr not detected. SDK calls may not work as expected. For full functionality, use a Datalogic mobile scanner and the latest version of Enterprise Browser.");
 		}
-
 		if (e instanceof ReferenceError && e.message.includes("_DLBarcodeMgr")) {
 			console.error(e)
 			console.log("ERROR: DLBarcodeMgr not injected. Barcode scanning functions may not work as expected.");
@@ -38,35 +36,37 @@ window.addEventListener('DOMContentLoaded', () => {
 		enableTrigs(false);
 	}
 
-	// Sets the status for the page.
-	function setStatus(message) {
-		document.getElementById('status').innerHTML = message;
+	// Sets the trigger status for the page.
+	function setTriggerStatus(message) {
+		document.getElementById('trig_status').innerHTML = message;
 	}
 
 	// Enables triggers
 	function enableTrigs(enable) {
 		if (DLKeyboardMgr.enableTriggers(enable)) {
 			if (enable) {
-				setStatus("Triggers enabled.");
+				setTriggerStatus("Triggers enabled.");
 			}
 			else {
-				setStatus("Triggers disabled.");
+				setTriggerStatus("Triggers disabled.");
 			}
 		}
 		else {
 			if (enable) {
-				setStatus("Error enabling triggers!");
+				setTriggerStatus("Error enabling triggers!");
 			}
 			else {
-				setStatus("Error disabling triggers!");
+				setTriggerStatus("Error disabling triggers!");
 			}
 		}
 	}
 
+	// Sets the soft keyboard status for the page.
 	function setSoftKeyboardStatus(message) {
 		document.getElementById("softkb_status").innerHTML = message;
 	}
 
+	// Shows the soft keyboard
 	function setSoftKeyboard(show) {
 		if (DLKeyboardMgr.showSoftKeyboard(show)) {
 			setSoftKeyboardStatus(show ? "Requested keyboard show." : "Requested keyboard hide.");
@@ -79,5 +79,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	function initProperties() {
 		DLBarcodeMgr.setProperty(BcdPropIds.WEDGE_KEYBOARD_ENABLE, true);
 		enableTrigs(true);
+		setSoftKeyboard(false);
 	}
 });
