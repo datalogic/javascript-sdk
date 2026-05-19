@@ -1,0 +1,65 @@
+<!-- Demonstrates the usage of notification APIs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Notification</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="res/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="styles/styles.css">
+	<link rel="stylesheet" type="text/css" href="styles/notification.css">
+	<script type="text/javascript" charset="utf-8" src="scripts/notification.js"></script>
+	<script type="text/javascript" charset="utf-8" src="../lib/dl_notification.js"></script>
+</head>
+<body>
+	<!-- Header and page title -->
+	<center>
+		<div class="banner">Visit datalogic.github.io/javascript/overview/ for full SDK documentation</div>
+		<h2>Notification</h2>
+	</center>
+
+	<!-- Vibrator info -->
+	<center>
+		<h3>Vibrator Info</h3>
+		<button class="action-button" id="has-vibrator">Has Vibrator?</button>
+		<div id="vib_info"></div>
+	</center>
+
+	<!-- Simple vibration -->
+	<br><hr>
+	<center>
+		<h3>Simple Vibration</h3>
+		<div>Duration (ms):</div>
+		<input id="duration" class="device-input-box" type="number" value="500" min="1">
+		<br><br>
+		<button class="action-button" id="vibrate">Vibrate</button>
+	</center>
+
+	<!-- Pattern vibration -->
+	<br><hr>
+	<center>
+		<h3>Pattern Vibration</h3>
+		<div>Pattern (wait,vib,wait,vib,…):</div>
+		<input id="pattern" class="device-input-box" type="text" value="0,200,100,200,100,400">
+		<div>Repeat index (-1 = no repeat):</div>
+		<input id="repeat" class="device-input-box" type="number" value="-1" min="-1">
+		<br><br>
+		<button class="action-button" id="pattern-vibrate">Vibrate Pattern</button>
+	</center>
+
+
+	<!-- Cancel -->
+	<br><hr><br>
+	<center>
+		<button class="action-button cancel" id="cancel">Cancel Vibration</button>
+	</center>
+
+	<!-- Status -->
+	<br><hr>
+	<div>
+		<h3>Status:</h3>
+		<div id="status">Initialized.</div>
+	</div>
+	<hr>
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+.action-button {
+	height: 15vw;
+	width: 40vw;
+	font-size: 5vw;
+}
+
+.action-button.cancel {
+	background-color: #cf4242;
+	color: white;
+	border: none;
+}
+
+.device-input-box {
+	font-size: 5vw;
+	width: 80vw;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 4px;
+}
+
+h3 {
+	font-size: 7vw;
+	font-weight: bold;
+}
+
+div {
+	font-size: 5vw;
+	word-wrap: break-word;
+	margin-bottom: 5px;
+}
+
+#vib_info {
+	font-weight: bold;
+	margin-top: 5px;
+}
+
+@media screen and (min-width: 601px) {
+	.action-button {
+		height: 5vw;
+		width: 20vw;
+		font-size: 1.5vw;
+	}
+
+	.device-input-box {
+		font-size: 2vw;
+		width: 40vw;
+	}
+
+	h3 {
+		font-size: 2vw;
+	}
+
+	div {
+		font-size: 1.5vw;
+	}
+}
+

@@ -46,6 +46,8 @@ h3 {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	text-decoration: none;
+	color: inherit;
 }
 
 .test-page-link {
